@@ -1,1 +1,1 @@
-module.exports = require('./lib/auth0')
+module.exports = require('./lib/cognito')
