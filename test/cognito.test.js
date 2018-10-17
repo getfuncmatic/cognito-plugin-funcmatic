@@ -22,6 +22,22 @@ beforeAll(async () => {
   authtoken = auth.token
 })
 
+describe('Initialization', () => {
+  it ('should create an cognito service using default env', async () => {
+    expect(process.env.COGNITO_USERPOOLID).toBeTruthy()
+    var newfunc = funcmatic.clone()
+    newfunc.clear()
+    newfunc.use(CognitoPlugin)
+    var plugin = newfunc.getPlugin('cognito')
+    expect(plugin.userPoolId).toBeFalsy() // it should not be initialized yet
+    await newfunc.invoke({}, {}, async(event, context, { }) => {
+      // noop
+    })
+    expect(plugin.userPoolId).toEqual(process.env.COGNITO_USERPOOLID)
+    expect(plugin.cache).toEqual(process.env.COGNITO_REDIS_CACHE_CONNECTION == 'true')
+    await newfunc.teardown()
+  })
+})
 
 describe('Token Authentication', () => {
   var plugin = null

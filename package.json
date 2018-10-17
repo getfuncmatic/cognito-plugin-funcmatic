@@ -1,6 +1,6 @@
 {
   "name": "@funcmatic/cognito-plugin",
-  "version": "0.0.2",
+  "version": "0.2.0",
   "description": "AWS Cognito JWT Authentication Plugin for the Funcmatic Lambda JS Framework",
   "main": "index.js",
   "scripts": {
@@ -20,7 +20,7 @@
     "node-jose": "^1.0.0"
   },
   "devDependencies": {
-    "@funcmatic/funcmatic": "^2.1.0",
+    "@funcmatic/funcmatic": "^2.2.0",
     "funcmatic-cognito": "^1.0.0-alpha",
     "jest": "^21.2.1"
   },
