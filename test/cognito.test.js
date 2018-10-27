@@ -57,6 +57,17 @@ describe('Token Authentication', () => {
   afterEach(async () => {
     await funcmatic.teardown()
   })
+  it ('should autofail non-cognito auth headers', async () => {
+    var event = { headers: { 'Authorization': 'BadHeaderType My-Key0Value'} }
+    var context = { }
+    await funcmatic.invoke(event, context, async (event, context, { cognito }) => {
+      expect(cognito).toMatchObject({
+        data: {
+          auth: false
+        }
+      })
+    })
+  })
   it ('should create an cognito service', async () => {
     var event = { }
     var context = { }
